@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="O'zbekistondagi Real Madrid fan klubi — Madridista Central. Yangiliklar, jadval va Madridistalar.">
+<meta name="keywords" content="Real Madrid, Uzbekistan, fan club, madridista, futbol">
+<meta property="og:title" content="Madridista Central — O'zbekiston">
+<meta property="og:description" content="O'zbekistondagi Real Madrid muxlislari uchun yagona platforma">
+<meta property="og:type" content="website">
+<title>Madridista Central — O'zbekiston</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cyan: #00D4FF;
+    --cyan-dim: rgba(0,212,255,0.15);
+    --cyan-border: rgba(0,212,255,0.3);
+    --purple: #B44FFF;
+    --purple-dim: rgba(180,79,255,0.12);
+    --white: #FFFFFF;
+    --black: #080810;
+    --dark: #0D0D1A;
+    --dark2: #13132A;
+    --gray: #6B7280;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 64px;
+    background: rgba(8,8,16,0.92); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--cyan-border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--cyan-border); box-shadow: 0 0 12px rgba(0,212,255,0.3); }
+  .logo-text { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 1.5px; text-transform: uppercase; }
+  .logo-sub { font-size: 10px; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase; display: block; margin-top: -2px; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-btn { background: transparent; color: var(--cyan); padding: 8px 18px; border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; border: 1.5px solid var(--cyan); transition: all 0.2s; }
+  .nav-btn:hover { background: var(--cyan); color: var(--black); box-shadow: 0 0 20px rgba(0,212,255,0.4); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 40%, #0a0a2e 0%, #080810 65%);
+  }
+  .hero-glow1 { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%); top: -100px; left: -100px; pointer-events: none; }
+  .hero-glow2 { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(180,79,255,0.08) 0%, transparent 70%); bottom: -100px; right: -100px; pointer-events: none; }
+  .grid-lines {
+    position: absolute; inset: 0; opacity: 0.03;
+    background: repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(0,212,255,1) 60px),
+                repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(0,212,255,1) 60px);
+  }
+  .hero-content { position: relative; text-align: center; padding: 6rem 2rem 4rem; max-width: 800px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 4px; color: var(--cyan); text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
+
+  .hero-logo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 2rem;
+    border: 2px solid var(--cyan-border);
+    box-shadow: 0 0 30px rgba(0,212,255,0.3), 0 0 60px rgba(180,79,255,0.15); }
+
+  .hero-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 0.95; letter-spacing: -2px; margin-bottom: 1.5rem; color: var(--white); }
+  .hero-title span { color: var(--cyan); text-shadow: 0 0 30px rgba(0,212,255,0.5); }
+  .hero-desc { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 480px; margin: 0 auto 2.5rem; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: var(--white); padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.2s; box-shadow: 0 4px 20px rgba(0,212,255,0.25); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,0.4); }
+  .btn-outline { background: transparent; color: var(--white); padding: 13px 32px; border-radius: 4px; font-size: 13px; font-weight: 600; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+  .hero-stats { display: flex; gap: 3rem; justify-content: center; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--cyan-border); }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; color: var(--cyan); display: block; text-shadow: 0 0 20px rgba(0,212,255,0.4); }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 1rem; }
+  .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.5px; line-height: 1.1; }
+  .section-desc { font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 500px; }
+
+  /* NEWS */
+  .news-section { background: var(--dark); }
+  .news-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .view-all { font-size: 12px; color: var(--cyan); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--cyan); padding-bottom: 2px; }
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--cyan-border); border: 1px solid var(--cyan-border); border-radius: 8px; overflow: hidden; }
+  .news-card { background: var(--dark2); padding: 1.75rem; transition: background 0.2s; cursor: pointer; }
+  .news-card:hover { background: #1a1a35; }
+  .news-tag { font-size: 10px; letter-spacing: 2px; color: var(--cyan); text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+  .news-title { font-size: 16px; font-weight: 600; color: var(--white); line-height: 1.4; margin-bottom: 0.75rem; }
+  .news-meta { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* MATCHES */
+  .match-section { background: var(--black); }
+  .match-card { background: var(--dark2); border: 1px solid var(--cyan-border); border-radius: 8px; padding: 2rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; transition: border-color 0.2s, box-shadow 0.2s; }
+  .match-card:hover { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,212,255,0.1); }
+  .match-league { font-size: 10px; letter-spacing: 2px; color: var(--cyan); text-transform: uppercase; }
+  .match-teams { display: flex; align-items: center; gap: 1.5rem; margin-top: 0.5rem; }
+  .team-name { font-size: 18px; font-weight: 700; color: var(--white); }
+  .match-vs { font-size: 12px; color: var(--gray); font-weight: 600; }
+  .match-date { font-size: 14px; font-weight: 600; color: var(--white); }
+  .match-hour { font-size: 12px; color: var(--gray); margin-top: 2px; }
+  .match-badge { background: var(--cyan-dim); color: var(--cyan); font-size: 10px; letter-spacing: 1px; padding: 4px 10px; border-radius: 3px; text-transform: uppercase; display: inline-block; margin-top: 6px; border: 1px solid var(--cyan-border); }
+
+  /* MADRIDISTALAR */
+  .community-section { background: var(--dark); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .feature-card { border: 1px solid var(--cyan-border); border-radius: 8px; padding: 1.75rem; background: var(--dark2); transition: border-color 0.2s, box-shadow 0.2s; }
+  .feature-card:hover { border-color: var(--purple); box-shadow: 0 0 20px rgba(180,79,255,0.1); }
+  .feature-icon { width: 40px; height: 40px; border-radius: 6px; background: var(--cyan-dim); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+  .feature-icon svg { width: 20px; height: 20px; stroke: var(--cyan); fill: none; stroke-width: 1.5; }
+  .feature-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+  .feature-text { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #080818 0%, #0d0a20 50%, #080810 100%);
+    text-align: center; border-top: 1px solid var(--cyan-border); border-bottom: 1px solid var(--cyan-border);
+  }
+  .cta-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -1px; }
+  .cta-title span { color: var(--cyan); text-shadow: 0 0 30px rgba(0,212,255,0.4); }
+  .cta-desc { font-size: 16px; color: rgba(255,255,255,0.45); margin-bottom: 2.5rem; line-height: 1.7; }
+  .tg-btn { display: inline-flex; align-items: center; gap: 10px; background: #229ED9; color: white; padding: 16px 36px; border-radius: 6px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.2s; box-shadow: 0 4px 20px rgba(34,158,217,0.3); }
+  .tg-btn:hover { background: #1a8fc5; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(34,158,217,0.4); }
+  .tg-btn svg { width: 20px; height: 20px; fill: white; }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 3rem 2rem; text-align: center; border-top: 1px solid var(--cyan-border); }
+  .footer-logo { font-size: 18px; font-weight: 800; color: var(--white); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .footer-sub { font-size: 11px; color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cyan); }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+  .disclaimer { font-size: 10px; color: rgba(255,255,255,0.12); margin-top: 0.5rem; }
+
+  /* HAMBURGER */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; z-index: 99;
+    background: rgba(8,8,16,0.98); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    border-top: 1px solid var(--cyan-border);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--white); text-decoration: none; font-size: 22px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; padding: 0.5rem 2rem; }
+  .mobile-menu a:hover { color: var(--cyan); }
+  .mobile-menu .tg-mobile { background: #229ED9; color: white; padding: 14px 40px; border-radius: 8px; font-size: 16px; margin-top: 1rem; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-btn { display: none; }
+    .hamburger { display: flex; }
+    .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-logo { width: 120px; height: 120px; }
+    .match-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .match-time { width: 100%; display: flex; align-items: center; gap: 1rem; }
+    section { padding: 4rem 1.25rem; }
+  }
+  @media (max-width: 480px) {
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0 1rem; }
+    .hero-title { font-size: 3.5rem; letter-spacing: -1px; }
+    .hero-desc { font-size: 14px; }
+    .btn-primary, .btn-outline { padding: 13px 22px; font-size: 12px; width: 100%; text-align: center; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .hero-stats { gap: 1rem; }
+    .stat-num { font-size: 22px; }
+    .stat-label { font-size: 9px; }
+    .news-grid { grid-template-columns: 1fr; }
+    .tg-btn { width: 100%; justify-content: center; padding: 14px 20px; }
+    .footer-links { gap: 1rem; }
+    .cta-title { font-size: 2rem; }
+  }
+  @media (max-width: 360px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .hero-logo { width: 100px; height: 100px; }
+  }
+  /* Touch targets */
+  @media (hover: none) {
+    .nav-btn, .btn-primary, .btn-outline, .tg-btn { min-height: 48px; }
+    .news-card { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.jpg" alt="Madridista Central Logo" class="logo-icon">
+    <div>
+      <span class="logo-text">Madridista Central</span>
+      <span class="logo-sub">O'zbekiston</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#news">Yangiliklar</a>
+    <a href="#matches">O'yinlar</a>
+    <a href="#community">Madridistalar</a>
+  </div>
+  <a href="https://t.me/Madridista_Central" class="nav-btn" target="_blank">Telegram</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menyu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#news" onclick="closeMenu()">Yangiliklar</a>
+  <a href="#matches" onclick="closeMenu()">O'yinlar</a>
+  <a href="#community" onclick="closeMenu()">Madridistalar</a>
+  <a href="https://t.me/Madridista_Central" class="tg-mobile" target="_blank" onclick="closeMenu()">Telegram</a>
+</div>
+
+<script>
+function toggleMenu() {
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-content">
+    <img src="logo.jpg" alt="Madridista Central" class="hero-logo">
+    <span class="hero-eyebrow">O'zbekistondagi rasmiy fan klubi</span>
+    <h1 class="hero-title">HALA<br><span>MADRID</span></h1>
+    <p class="hero-desc">O'zbekistondagi Real Madrid muxlislari uchun yagona platforma. Yangiliklar, o'yinlar va Madridistalar.</p>
+    <div class="hero-actions">
+      <a href="https://t.me/Madridista_Central" class="btn-primary" target="_blank">Kanalga qo'shiling</a>
+      <a href="#news" class="btn-outline">Yangiliklar</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">36×</span><span class="stat-label">La Liga chempioni</span></div>
+      <div class="stat-item"><span class="stat-num">15×</span><span class="stat-label">Chempionlar ligasi</span></div>
+      <div class="stat-item"><span class="stat-num">UZ</span><span class="stat-label">O'zbekistonda</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+  <div class="container">
+    <div class="news-header">
+      <div>
+        <p class="section-label">So'nggi yangiliklar</p>
+        <h2 class="section-title">Klub yangiliklari</h2>
+      </div>
+      <a href="https://t.me/Madridista_Central" class="view-all" target="_blank">Barchasini ko'rish →</a>
+    </div>
+    <!-- Kategoriya filtri -->
+    <div id="cat-filters" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;"></div>
+    <!-- Yangiliklar grid -->
+    <div class="news-grid" id="news-grid">
+      <div class="news-card" style="grid-column:1/-1;text-align:center;padding:2rem;color:rgba(255,255,255,0.4);">
+        Yangiliklar yuklanmoqda...
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+var allNews = [];
+var activeCategory = 'Barchasi';
+
+var catColors = {
+  'Transferlar': '#00D4FF',
+  "O'yinlar": '#B44FFF',
+  'Intervyular': '#FF6B6B',
+  'Klub yangiliklari': '#FFD700',
+  'Castilla': '#00FF9F',
+  "Ayollar jamoasi": '#FF9FF3',
+  'Yangiliklar': '#aaa',
+  'Madridistalar': '#00D4FF'
+};
+
+function formatDate(d) {
+  var months = ['yan','fev','mar','apr','may','iyun','iyul','avg','sen','okt','noy','dek'];
+  var parts = d.split('-');
+  return parts[2] + ' ' + months[parseInt(parts[1])-1] + ' ' + parts[0];
+}
+
+function renderNews(items) {
+  var grid = document.getElementById('news-grid');
+  if (!items.length) {
+    grid.innerHTML = '<div class="news-card" style="grid-column:1/-1;text-align:center;padding:2rem;color:rgba(255,255,255,0.4);">Yangiliklar topilmadi</div>';
+    return;
+  }
+  grid.innerHTML = items.slice(0,6).map(function(n) {
+    var color = catColors[n.category] || '#aaa';
+    return '<div class="news-card" onclick="openNews('+n.id+')">' +
+      '<span class="news-tag" style="color:'+color+'">'+n.category+'</span>' +
+      '<p class="news-title">'+n.title+'</p>' +
+      (n.text ? '<p style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:0.5rem;">'+n.text.substring(0,80)+(n.text.length>80?'...':'')+'</p>' : '') +
+      '<span class="news-meta">'+formatDate(n.date)+'</span>' +
+    '</div>';
+  }).join('');
+}
+
+function renderFilters(news) {
+  var cats = ['Barchasi'];
+  news.forEach(function(n) { if(cats.indexOf(n.category)===-1) cats.push(n.category); });
+  var wrap = document.getElementById('cat-filters');
+  wrap.innerHTML = cats.map(function(c) {
+    var active = c === activeCategory;
+    return '<button onclick="filterNews(\''+c+'\')" style="'+
+      'background:'+(active?'var(--cyan)':'transparent')+';'+
+      'color:'+(active?'var(--black)':'rgba(255,255,255,0.6)')+';'+
+      'border:1px solid '+(active?'var(--cyan)':'rgba(255,255,255,0.2)')+';'+
+      'padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;transition:all 0.2s;">'+c+'</button>';
+  }).join('');
+}
+
+function filterNews(cat) {
+  activeCategory = cat;
+  var filtered = cat === 'Barchasi' ? allNews : allNews.filter(function(n){ return n.category===cat; });
+  renderFilters(allNews);
+  renderNews(filtered);
+}
+
+function openNews(id) {
+  var n = allNews.find(function(x){ return x.id===id; });
+  if(!n) return;
+  alert(n.title + '\n\n' + n.text + '\n\n📅 ' + formatDate(n.date));
+}
+
+fetch('news.json?v=' + Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    allNews = data.news || [];
+    renderFilters(allNews);
+    renderNews(allNews);
+  })
+  .catch(function() {
+    document.getElementById('news-grid').innerHTML =
+      '<div class="news-card" style="grid-column:1/-1;text-align:center;padding:2rem;color:rgba(255,255,255,0.4);">Yangiliklar yuklanmadi. Iltimos, sahifani yangilang.</div>';
+  });
+</script>
+
+<!-- MATCHES -->
+<section class="match-section" id="matches">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2.5rem; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p class="section-label">Jadval</p>
+        <h2 class="section-title">Kelgusi o'yinlar</h2>
+      </div>
+    </div>
+    <div class="match-card">
+      <div>
+        <p class="match-league">La Liga · 1-tur</p>
+        <div class="match-teams">
+          <span class="team-name">Real Madrid</span>
+          <span class="match-vs">vs</span>
+          <span class="team-name">Atletico Madrid</span>
+        </div>
+      </div>
+      <div>
+        <p class="match-date">17 avg 2025</p>
+        <p class="match-hour">22:00 UZB vaqti</p>
+        <span class="match-badge">Kutilmoqda</span>
+      </div>
+    </div>
+    <div class="match-card">
+      <div>
+        <p class="match-league">Champions League · Guruh bosqichi</p>
+        <div class="match-teams">
+          <span class="team-name">Real Madrid</span>
+          <span class="match-vs">vs</span>
+          <span class="team-name">TBD</span>
+        </div>
+      </div>
+      <div>
+        <p class="match-date">Sentyabr 2025</p>
+        <p class="match-hour">TBA</p>
+        <span class="match-badge">UCL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MADRIDISTALAR -->
+<section class="community-section" id="community">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <p class="section-label">Madridistalar</p>
+        <h2 class="section-title">Nima uchun qo'shilish kerak?</h2>
+        <p class="section-desc">O'zbekistondagi barcha madridistalar uchun yagona uy. Birgalikda o'yinlarni kuzatamiz, yangiliklar ulashamiz.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="feature-title">Madridistalar</p>
+          <p class="feature-text">O'zbekistondagi barcha muxlislar bilan tanishing</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <p class="feature-title">Jonli yangiliklar</p>
+          <p class="feature-text">O'yinlar va transferlar haqida birinchi xabar oling</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <p class="feature-title">O'yin vaqtlari</p>
+          <p class="feature-text">O'zbekiston vaqtida to'g'ri jadval</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <p class="feature-title">Muhokama</p>
+          <p class="feature-text">O'yinlar haqida fikr almashing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="cta-title">Hoziroq <span>qo'shiling</span></h2>
+    <p class="cta-desc">Telegram kanalimizga qo'shiling va hech narsa qoldirib ketmang.</p>
+    <a href="https://t.me/Madridista_Central" class="tg-btn" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.069l-2.04 9.609c-.153.684-.555.852-1.125.53l-3.105-2.288-1.499 1.442c-.166.165-.305.305-.625.305l.223-3.168 5.768-5.209c.251-.222-.055-.346-.389-.124L7.24 14.464l-3.054-.954c-.664-.207-.677-.664.138-.984l11.924-4.597c.553-.2 1.037.134.314.14z"/></svg>
+      t.me/Madridista_Central
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-logo">Madridista Central</p>
+  <p class="footer-sub">O'zbekiston · Fan Klubi</p>
+  <div class="footer-links">
+    <a href="#news">Yangiliklar</a>
+    <a href="#matches">Jadval</a>
+    <a href="#community">Madridistalar</a>
+    <a href="https://t.me/Madridista_Central" target="_blank">Telegram</a>
+  </div>
+  <p class="footer-copy">© 2025 Madridista Central Uzbekistan</p>
+  <p class="disclaimer">Bu rasmiy Real Madrid veb-sayti emas. Bu mustaqil fan klubi loyihasi.</p>
+</footer>
+
+</body>
+</html>
