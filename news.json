@@ -1,0 +1,28 @@
+{
+  "news": [
+    {
+      "id": 1,
+      "title": "Madridista Central rasman tashkil etildi",
+      "category": "Madridistalar",
+      "date": "2025-06-01",
+      "text": "O'zbekistondagi Real Madrid muxlislari uchun rasmiy fan klub platformasi ochildi.",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "title": "La Liga — mavsumning so'nggi o'yini tahlili",
+      "category": "O'yinlar",
+      "date": "2025-06-10",
+      "text": "Real Madrid mavsumni g'alaba bilan yakunladi. Batafsilroq tahlil.",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "title": "Yangi mavsumga tayyorgarlik boshlandi",
+      "category": "Transferlar",
+      "date": "2025-06-13",
+      "text": "Real Madrid yangi mavsum uchun trening lagerini boshladi.",
+      "image": ""
+    }
+  ]
+}
