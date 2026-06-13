@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madridista Central — A'zo bo'lish</title>
+<meta name="description" content="Madridista Central Uzbekistan fan klubiga a'zo bo'ling va shaxsiy Digital ID oling.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cyan:#00D4FF;--cyan-dim:rgba(0,212,255,0.12);--cyan-border:rgba(0,212,255,0.25);
+  --purple:#B44FFF;--white:#fff;--black:#080810;--dark:#0D0D1A;--dark2:#13132A;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--black);color:var(--white);min-height:100vh;}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:rgba(8,8,16,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--cyan-border);position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1.5px solid var(--cyan-border);}
+.logo-text{font-size:13px;font-weight:700;color:var(--white);letter-spacing:1px;text-transform:uppercase;}
+.logo-sub{font-size:9px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;display:block;}
+.back-btn{font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.back-btn:hover{color:var(--cyan);}
+
+/* HERO */
+.page-hero{text-align:center;padding:3rem 2rem 2rem;background:radial-gradient(ellipse at 50% 0%,#0a0a2e 0%,transparent 70%);}
+.page-hero .badge{font-size:10px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:0.75rem;display:block;}
+.page-hero h1{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;letter-spacing:-1px;margin-bottom:0.75rem;}
+.page-hero h1 span{color:var(--cyan);}
+.page-hero p{font-size:14px;color:rgba(255,255,255,0.45);max-width:460px;margin:0 auto;line-height:1.7;}
+
+/* COUNTER */
+.member-counter{text-align:center;padding:1.5rem 2rem;background:var(--dark);border-top:1px solid var(--cyan-border);border-bottom:1px solid var(--cyan-border);}
+.counter-num{font-size:2.5rem;font-weight:800;color:var(--cyan);text-shadow:0 0 20px rgba(0,212,255,0.4);}
+.counter-label{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+
+/* MAIN LAYOUT */
+.main-wrap{max-width:1000px;margin:0 auto;padding:3rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+
+/* FORM */
+.form-card{background:var(--dark2);border:1px solid var(--cyan-border);border-radius:12px;padding:2rem;}
+.form-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:0.25rem;}
+.form-sub{font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:1.75rem;}
+.form-group{margin-bottom:1.25rem;}
+.form-group label{display:block;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:0.5rem;}
+.form-group input,.form-group select{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:11px 14px;color:var(--white);font-size:14px;font-family:inherit;transition:border-color .2s;outline:none;}
+.form-group input:focus,.form-group select:focus{border-color:var(--cyan);}
+.form-group select option{background:var(--dark2);color:var(--white);}
+.form-group input::placeholder{color:rgba(255,255,255,0.2);}
+.optional{font-size:10px;color:rgba(255,255,255,0.25);margin-left:6px;text-transform:none;letter-spacing:0;}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--cyan),var(--purple));color:var(--white);border:none;border-radius:6px;padding:14px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;margin-top:0.5rem;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,212,255,0.3);}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.legal{font-size:11px;color:rgba(255,255,255,0.2);text-align:center;margin-top:1rem;line-height:1.5;}
+
+/* ID CARD PREVIEW */
+.preview-wrap{position:sticky;top:80px;}
+.preview-label{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:1rem;text-align:center;}
+
+/* ID CARD */
+.id-card{
+  width:100%;max-width:360px;margin:0 auto;
+  background:linear-gradient(135deg,#0a0820 0%,#0d1525 50%,#0a0820 100%);
+  border:1px solid var(--cyan-border);border-radius:16px;overflow:hidden;
+  box-shadow:0 0 40px rgba(0,212,255,0.15),0 0 80px rgba(180,79,255,0.08);
+  position:relative;
+}
+.card-top-bar{height:4px;background:linear-gradient(90deg,var(--cyan),var(--purple));}
+.card-body{padding:1.5rem;}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;}
+.card-logo{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1.5px solid var(--cyan-border);}
+.card-org{text-align:right;}
+.card-org-name{font-size:11px;font-weight:700;color:var(--white);letter-spacing:1px;text-transform:uppercase;}
+.card-org-sub{font-size:9px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;}
+.card-divider{height:1px;background:var(--cyan-border);margin-bottom:1.25rem;}
+.card-member-id{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.card-id-num{font-size:2rem;font-weight:800;color:var(--cyan);letter-spacing:2px;text-shadow:0 0 20px rgba(0,212,255,0.4);margin-bottom:1rem;}
+.card-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem;}
+.card-info-item .ci-label{font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.card-info-item .ci-val{font-size:13px;font-weight:600;color:var(--white);}
+.card-info-item.full{grid-column:1/-1;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;}
+.card-hala{font-size:14px;font-weight:800;color:var(--cyan);letter-spacing:3px;text-shadow:0 0 15px rgba(0,212,255,0.4);}
+.card-date{font-size:10px;color:rgba(255,255,255,0.25);}
+.card-watermark{position:absolute;bottom:1rem;right:1rem;font-size:60px;opacity:0.03;font-weight:900;pointer-events:none;user-select:none;}
+
+/* QR placeholder */
+.qr-box{width:52px;height:52px;background:rgba(255,255,255,0.06);border:1px solid var(--cyan-border);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.qr-box svg{width:32px;height:32px;opacity:0.4;}
+
+/* DOWNLOAD */
+.download-section{max-width:360px;margin:1.5rem auto 0;display:none;}
+.download-section.show{display:block;}
+.dl-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--dark2);border:1px solid var(--cyan-border);border-radius:8px;padding:12px;color:var(--cyan);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;}
+.dl-btn:hover{background:var(--cyan-dim);border-color:var(--cyan);}
+.share-btn{margin-top:0.75rem;background:linear-gradient(135deg,var(--cyan),var(--purple));border:none;color:white;}
+.share-btn:hover{opacity:0.9;background:linear-gradient(135deg,var(--cyan),var(--purple));}
+
+/* SUCCESS */
+.success-msg{display:none;background:rgba(0,212,255,0.08);border:1px solid var(--cyan-border);border-radius:8px;padding:1rem 1.25rem;margin-top:1rem;font-size:13px;color:var(--cyan);text-align:center;}
+.success-msg.show{display:block;}
+
+/* STEPS */
+.steps-section{max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem;}
+.steps-title{font-size:11px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:1.5rem;text-align:center;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.step-card{background:var(--dark2);border:1px solid var(--cyan-border);border-radius:10px;padding:1.5rem;text-align:center;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--cyan-dim);border:1px solid var(--cyan-border);color:var(--cyan);font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 0.875rem;}
+.step-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:0.5rem;}
+.step-text{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .main-wrap{grid-template-columns:1fr;gap:2rem;}
+  .preview-wrap{position:static;}
+  .steps-grid{grid-template-columns:1fr;}
+  .card-info-grid{grid-template-columns:1fr;}
+  .card-info-item.full{grid-column:1;}
+}
+@media(max-width:480px){
+  nav{padding:0 1rem;}
+  .page-hero{padding:2rem 1rem 1.5rem;}
+  .main-wrap,.steps-section{padding-left:1rem;padding-right:1rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="Logo" class="logo-icon">
+    <div>
+      <span class="logo-text">Madridista Central</span>
+      <span class="logo-sub">O'zbekiston</span>
+    </div>
+  </a>
+  <a href="index.html" class="back-btn">← Bosh sahifa</a>
+</nav>
+
+<div class="page-hero">
+  <span class="badge">Fan-klub a'zoligi</span>
+  <h1>Madridista <span>bo'ling</span></h1>
+  <p>Rasmiy Madridista Central Fan ID oling — bepul, darhol va faxrli!</p>
+</div>
+
+<div class="member-counter">
+  <div class="counter-num" id="memberCount">127</div>
+  <div class="counter-label">👥 Faol Madridistalar</div>
+</div>
+
+<div class="main-wrap">
+  <!-- FORM -->
+  <div>
+    <div class="form-card">
+      <p class="form-title">A'zolik formasi</p>
+      <p class="form-sub">Barcha maydonlar to'ldirilsin (* majburiy)</p>
+
+      <div class="form-group">
+        <label>Ism va Familiya *</label>
+        <input type="text" id="f-name" placeholder="Dostonbek Yusupov" oninput="updateCard()">
+      </div>
+      <div class="form-group">
+        <label>Telegram username *</label>
+        <input type="text" id="f-tg" placeholder="@username" oninput="updateCard()">
+      </div>
+      <div class="form-group">
+        <label>Shahar *</label>
+        <select id="f-city" onchange="updateCard()">
+          <option value="">Shaharni tanlang</option>
+          <option>Toshkent</option>
+          <option>Samarqand</option>
+          <option>Buxoro</option>
+          <option>Namangan</option>
+          <option>Andijon</option>
+          <option>Farg'ona</option>
+          <option>Qo'qon</option>
+          <option>Nukus</option>
+          <option>Termiz</option>
+          <option>Boshqa</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Sevimli futbolchi *</label>
+        <select id="f-player" onchange="updateCard()">
+          <option value="">Tanlang</option>
+          <option>Kylian Mbappé</option>
+          <option>Vinicius Jr.</option>
+          <option>Jude Bellingham</option>
+          <option>Rodrygo</option>
+          <option>Luka Modrić</option>
+          <option>Federico Valverde</option>
+          <option>Aurélien Tchouaméni</option>
+          <option>Dani Carvajal</option>
+          <option>Éder Militão</option>
+          <option>Antonio Rüdiger</option>
+          <option>Thibaut Courtois</option>
+          <option>Boshqa</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tug'ilgan yil <span class="optional">(ixtiyoriy)</span></label>
+        <input type="text" id="f-year" placeholder="2000" maxlength="4" oninput="updateCard()">
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+        🤍 Fan ID olish
+      </button>
+      <div class="success-msg" id="successMsg">
+        ✅ Tabriklaymiz! Sizning Fan ID tayyor. Kartani yuklab oling!
+      </div>
+      <p class="legal">Madridista Central — Real Madrid C.F. dan mustaqil fan hamjamiyati.<br>Bu rasmiy Real Madrid a'zoligi emas.</p>
+    </div>
+  </div>
+
+  <!-- ID CARD PREVIEW -->
+  <div class="preview-wrap">
+    <p class="preview-label">Sizning Fan ID ko'rinishi</p>
+
+    <div class="id-card" id="idCard">
+      <div class="card-top-bar"></div>
+      <div class="card-body">
+        <div class="card-header">
+          <img src="logo.jpg" class="card-logo" alt="Logo">
+          <div class="card-org">
+            <div class="card-org-name">Madridista Central</div>
+            <div class="card-org-sub">Uzbekistan</div>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-member-id">Fan ID</div>
+        <div class="card-id-num" id="card-id">MC-????</div>
+        <div class="card-info-grid">
+          <div class="card-info-item full">
+            <div class="ci-label">Ism</div>
+            <div class="ci-val" id="card-name">—</div>
+          </div>
+          <div class="card-info-item">
+            <div class="ci-label">Shahar</div>
+            <div class="ci-val" id="card-city">—</div>
+          </div>
+          <div class="card-info-item">
+            <div class="ci-label">A'zo bo'lgan sana</div>
+            <div class="ci-val" id="card-date-val">—</div>
+          </div>
+          <div class="card-info-item full">
+            <div class="ci-label">Sevimli futbolchi</div>
+            <div class="ci-val" id="card-player">—</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-hala">HALA MADRID</div>
+          <div class="qr-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+              <path d="M14 14h2v2h-2zM18 14h3M14 18h2M18 18h3v3M18 21h3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-watermark">RM</div>
+    </div>
+
+    <div class="download-section" id="downloadSection">
+      <button class="dl-btn" onclick="downloadCard()">
+        ⬇️ Fan ID ni yuklab olish (PNG)
+      </button>
+      <button class="dl-btn share-btn" onclick="shareCard()">
+        📤 Story'ga ulashish
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="steps-section">
+  <p class="steps-title">Qanday ishlaydi?</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <p class="step-title">Formani to'ldiring</p>
+      <p class="step-text">Ismingiz, shahringiz va sevimli futbolchingizni kiriting</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <p class="step-title">Fan ID oling</p>
+      <p class="step-text">Avtomatik ravishda unikal MC-XXXX raqam beriladi</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <p class="step-title">Ulashing</p>
+      <p class="step-text">Kartani Story'ga qo'ying va do'stlaringizni taklif qiling!</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+// Bugungi sana
+var today = new Date();
+var months = ['yan','fev','mar','apr','may','iyun','iyul','avg','sen','okt','noy','dek'];
+var todayStr = today.getDate()+' '+months[today.getMonth()]+' '+today.getFullYear();
+document.getElementById('card-date-val').textContent = todayStr;
+
+// A'zo soni — localStorage dan
+var baseCount = 127;
+var stored = localStorage.getItem('mc_count');
+var memberCount = stored ? parseInt(stored) : baseCount;
+document.getElementById('memberCount').textContent = memberCount;
+
+// ID generatsiya
+function genId(){
+  var num = memberCount + 1;
+  return 'MC-' + String(num).padStart(4,'0');
+}
+
+// Kartani yangilash
+function updateCard(){
+  var name = document.getElementById('f-name').value.trim();
+  var city = document.getElementById('f-city').value;
+  var player = document.getElementById('f-player').value;
+
+  document.getElementById('card-name').textContent = name || '—';
+  document.getElementById('card-city').textContent = city || '—';
+  document.getElementById('card-player').textContent = player || '—';
+  document.getElementById('card-id').textContent = name ? genId() : 'MC-????';
+}
+
+// Form yuborish
+function submitForm(){
+  var name = document.getElementById('f-name').value.trim();
+  var tg = document.getElementById('f-tg').value.trim();
+  var city = document.getElementById('f-city').value;
+  var player = document.getElementById('f-player').value;
+
+  if(!name){alert('Ism va familiyangizni kiriting!');return;}
+  if(!tg){alert('Telegram username kiriting!');return;}
+  if(!city){alert('Shaharni tanlang!');return;}
+  if(!player){alert('Sevimli futbolchini tanlang!');return;}
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Tayyor bo\'linmoqda...';
+
+  setTimeout(function(){
+    memberCount += 1;
+    localStorage.setItem('mc_count', memberCount);
+    document.getElementById('memberCount').textContent = memberCount;
+    document.getElementById('card-id').textContent = 'MC-' + String(memberCount).padStart(4,'0');
+
+    btn.textContent = '✅ Fan ID tayyor!';
+    document.getElementById('successMsg').classList.add('show');
+    document.getElementById('downloadSection').classList.add('show');
+  }, 1200);
+}
+
+// Yuklab olish
+function downloadCard(){
+  var card = document.getElementById('idCard');
+  html2canvas(card, {
+    backgroundColor: '#0a0820',
+    scale: 2,
+    useCORS: true,
+    logging: false
+  }).then(function(canvas){
+    var link = document.createElement('a');
+    link.download = 'MadridistaCentral-FanID.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+}
+
+// Ulashish
+function shareCard(){
+  if(navigator.share){
+    navigator.share({
+      title: 'Madridista Central Fan ID',
+      text: 'Men Madridista Central Uzbekistan a\'zosiman! Qo\'shiling: https://t.me/Madridista_Central',
+      url: 'https://t.me/Madridista_Central'
+    });
+  } else {
+    downloadCard();
+  }
+}
+</script>
+</body>
+</html>
