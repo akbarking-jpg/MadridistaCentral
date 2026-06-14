@@ -1,0 +1,26 @@
+# Maxfiy fayllar - HECH QACHON GitHub'ga yuklanmasin
+.env
+.env.local
+.env.production
+secrets.json
+config.json
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# OS fayllar
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log fayllar
+*.log
+logs/
