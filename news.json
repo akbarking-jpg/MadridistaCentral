@@ -1,6 +1,14 @@
 {
   "news": [
     {
+      "id": 4,
+      "title": "#klub",
+      "category": "Klub yangiliklari",
+      "date": "2026-06-27",
+      "text": "Assalomu alaykum",
+      "image": ""
+    },
+    {
       "id": 1,
       "title": "Madridista Central rasman tashkil etildi",
       "category": "Madridistalar",
