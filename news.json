@@ -1,6 +1,14 @@
 {
   "news": [
     {
+      "id": 5,
+      "title": "#test",
+      "category": "Yangiliklar",
+      "date": "2026-07-02",
+      "text": "Assalomu alaykum",
+      "image": ""
+    },
+    {
       "id": 4,
       "title": "#klub",
       "category": "Klub yangiliklari",
