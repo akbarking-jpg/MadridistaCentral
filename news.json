@@ -1,6 +1,14 @@
 {
   "news": [
     {
+      "id": 6,
+      "title": "Bir davrning yakuni, buyuk bir tarixning xotimasi...",
+      "category": "Yangiliklar",
+      "date": "2026-07-07",
+      "text": "Kecha Portugaliya Ispaniyaga 1-0 hisobida imkoniyatni boy berib, Jahon chempionatini tark etdi. Ammo bu shunchaki mag‘lubiyat emas, millionlab muxlislar uchun chinakam ayriliq oqshomi bo‘ldi. Ko‘zimizda yosh bilan, futbol tarixidagi eng buyuk afsonalardan biri — Krishtianu Ronalduning terma jamoadagi so‘nggi o‘yinini kuzatdik.\n\nSizni futbol deb atalmish sehrli olamga olib kirgan, har bir harakati va goli bilan millionlab qalblarga cheksiz hayajon ulashgan inson bugun maydonni ko‘zda yosh bilan tark etdi. Uning yashil maydondagi tinimsiz mehnatlari, taslim bo‘lmas xarakteri va g‘alabaga bo‘lgan chanqoqligi butun bir avlodni futbolni sevishga majbur qilgandi.\n\nRonaldu Portugaliya termasi bilan xayrlashdi, biroq u bizga qoldirgan unutilmas xotiralar, gollar va buyuk g‘alabalar qalblarda mangu yashaydi. Afsonalar ketadi, lekin ularning merosi hech qachon o‘chmaydi.",
+      "image": ""
+    },
+    {
       "id": 5,
       "title": "#test",
       "category": "Yangiliklar",
